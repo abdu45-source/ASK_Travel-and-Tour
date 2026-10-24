@@ -1,27 +1,19 @@
-# Multi-stage production Dockerfile for NestJS API
-FROM node:20-alpine AS builder
+FROM node:20-alpine
 
 WORKDIR /usr/src/app
 
+# Install dependencies
 COPY package*.json ./
 RUN npm ci
 
+# Copy all source files
 COPY . .
+
+# Build the NestJS application
 RUN npm run build
 
-# Production runtime stage
-FROM node:20-alpine AS runner
-
-WORKDIR /usr/src/app
-
-ENV NODE_ENV=production
-
-COPY package*.json ./
-RUN npm ci --only=production
-
-COPY --from=builder /usr/src/app/dist ./dist
-
+# Expose API port
 EXPOSE 3000
 
-CMD ["node", "dist/main"]
-
+# Start server (checks dist/main.js and dist/src/main.js)
+CMD ["sh", "-c", "if [ -f dist/main.js ]; then node dist/main.js; elif [ -f dist/src/main.js ]; then node dist/src/main.js; else node $(find dist -name 'main.js'); fi"]
