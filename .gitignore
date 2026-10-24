@@ -38,3 +38,8 @@ Thumbs.db
 # Local agent metadata
 .agents/
 
+
+# Vite cache & TypeScript build info
+.vite/
+*/.vite/
+*.tsbuildinfo
