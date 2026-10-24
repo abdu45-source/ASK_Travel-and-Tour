@@ -2,18 +2,18 @@ FROM node:20-alpine
 
 WORKDIR /usr/src/app
 
-# Install dependencies
+# Install all dependencies including dev tools for building
 COPY package*.json ./
 RUN npm ci
 
-# Copy all source files
+# Copy full backend source code
 COPY . .
 
-# Build the NestJS application
+# Compile TypeScript / NestJS
 RUN npm run build
 
-# Expose API port
+# Expose port (Render automatically provides $PORT)
 EXPOSE 3000
 
-# Start server (checks dist/main.js and dist/src/main.js)
-CMD ["sh", "-c", "if [ -f dist/main.js ]; then node dist/main.js; elif [ -f dist/src/main.js ]; then node dist/src/main.js; else node $(find dist -name 'main.js'); fi"]
+# Start server directly with node
+CMD ["node", "dist/main.js"]

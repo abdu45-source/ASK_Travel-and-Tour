@@ -21,6 +21,17 @@ import { AppSetting } from '../entities/app-setting.entity';
 import { PendingRegistration } from '../entities/pending-registration.entity';
 import { AgentReferralCode } from '../entities/agent-referral-code.entity';
 
+const isProductionCloud =
+  process.env.DB_SSL === 'true' ||
+  (process.env.DATABASE_URL &&
+    !process.env.DATABASE_URL.includes('localhost') &&
+    !process.env.DATABASE_URL.includes('127.0.0.1') &&
+    (process.env.DATABASE_URL.includes('render.com') ||
+      process.env.DATABASE_URL.includes('sslmode=require') ||
+      process.env.DATABASE_URL.includes('supabase') ||
+      process.env.DATABASE_URL.includes('neon') ||
+      process.env.NODE_ENV === 'production'));
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -34,10 +45,7 @@ import { AgentReferralCode } from '../entities/agent-referral-code.entity';
             password: process.env.DB_PASSWORD || 'abduselam',
             database: process.env.DB_NAME || 'travel_tour_db',
           }),
-      ssl:
-        process.env.DB_SSL === 'true' || process.env.DATABASE_URL?.includes('sslmode=require')
-          ? { rejectUnauthorized: false }
-          : false,
+      ssl: isProductionCloud ? { rejectUnauthorized: false } : false,
       entities: [
         User,
         Role,
@@ -62,6 +70,8 @@ import { AgentReferralCode } from '../entities/agent-referral-code.entity';
       ],
       synchronize: true, // Auto schema sync
       logging: false,
+      retryAttempts: 10,
+      retryDelay: 3000,
     }),
   ],
 })

@@ -21,13 +21,20 @@ async function bootstrap() {
   app.use(cookieParser());
 
   // CORS (SEC-B03)
+  const allowedOrigins: (string | RegExp)[] = [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'http://127.0.0.1:5173',
+    'http://127.0.0.1:3000',
+  ];
+  if (process.env.FRONTEND_URL) {
+    allowedOrigins.push(process.env.FRONTEND_URL);
+  }
   app.enableCors({
-    origin: [
-      'http://localhost:5173',
-      'http://localhost:3000',
-      'http://127.0.0.1:5173',
-      'http://127.0.0.1:3000',
-    ],
+    origin:
+      process.env.NODE_ENV === 'production' && !process.env.FRONTEND_URL
+        ? true
+        : allowedOrigins,
     credentials: true,
   });
 
@@ -84,11 +91,12 @@ async function bootstrap() {
   });
 
   const port = process.env.PORT || 3000;
-  await app.listen(port);
+  // Crucial: Bind to 0.0.0.0 for Docker & cloud host (Render/Railway/AWS) port detection
+  await app.listen(port, '0.0.0.0');
   console.log(`=======================================================`);
-  console.log(`ASK Tour & Travel Agency API running on http://localhost:${port}/api/v1`);
-  console.log(`Swagger API Docs: http://localhost:${port}/api/docs`);
-  console.log(`Health check: http://localhost:${port}/api/v1/health/live`);
+  console.log(`ASK Tour & Travel Agency API listening on 0.0.0.0:${port}/api/v1`);
+  console.log(`Swagger API Docs: http://0.0.0.0:${port}/api/docs`);
+  console.log(`Health check: http://0.0.0.0:${port}/api/v1/health/live`);
   console.log(`=======================================================`);
 }
 bootstrap();
