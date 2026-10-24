@@ -9,7 +9,10 @@ RUN npm ci
 # Copy full backend source code
 COPY . .
 
-# Compile TypeScript / NestJS
+# Remove any possible stale build caches
+RUN rm -rf dist tsconfig.tsbuildinfo
+
+# Compile TypeScript / NestJS from clean source
 RUN npm run build
 
 # Expose port (Render automatically provides $PORT)
