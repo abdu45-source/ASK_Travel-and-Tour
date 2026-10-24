@@ -1,0 +1,39 @@
+export enum UserStatus {
+  PENDING_VERIFICATION = 'PENDING_VERIFICATION',
+  ACTIVE = 'ACTIVE',
+  SUSPENDED = 'SUSPENDED',
+  REVOKED = 'REVOKED',
+  BLOCKED = 'BLOCKED',
+}
+
+export enum DestinationStatus {
+  DRAFT = 'DRAFT',
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  CANCELLED = 'CANCELLED',
+}
+
+export enum BookingStatus {
+  PENDING = 'PENDING',
+  APPROVED = 'APPROVED',
+  REJECTED = 'REJECTED',
+  CANCELLED = 'CANCELLED',
+  COMPLETED = 'COMPLETED',
+}
+
+export enum WalletTxType {
+  COMMISSION_CREDIT = 'COMMISSION_CREDIT',
+  COMMISSION_REVERSAL = 'COMMISSION_REVERSAL',
+  PAYOUT = 'PAYOUT',
+}
+
+export enum PriceAdjustType {
+  PERCENT = 'PERCENT',
+  FIXED_AMOUNT = 'FIXED_AMOUNT',
+  OVERRIDE = 'OVERRIDE',
+}
+
+export enum ConversationType {
+  AGENT_MANAGER = 'AGENT_MANAGER',
+  CLIENT_SUPPORT = 'CLIENT_SUPPORT',
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "robis-design-best-practice": {
+      "source": "Ethiopian-Cursor-Community/robis-design-best-practice",
+      "sourceType": "github",
+      "skillPath": "robis-design-best-practice/SKILL.md",
+      "computedHash": "628dc903a52cefab49ab236e703d67d1f25026543f07b1c9622505cd8e663f1f"
+    }
+  }
+}
