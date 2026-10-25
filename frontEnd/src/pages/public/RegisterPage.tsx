@@ -257,7 +257,7 @@ export const RegisterPage: React.FC = () => {
             {/* Email Address */}
             <div>
               <label className="block text-xs font-bold text-stone-700 mb-1">
-                Email Address <span className="text-[11px] text-stone-500 font-normal">(Account verification code will be sent here)</span>
+                Email Address
               </label>
               <div className="relative">
                 <Mail className="w-4 h-4 text-stone-400 absolute left-3.5 top-3" />

@@ -34,7 +34,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2.5 text-xs">
               <li>
                 <Link to="/destinations/lalibela-rock-hewn-churches" className="hover:text-primary-400 transition-colors">
-                  Lalibela Rock-Hewn Churches
+                  Lalibela Rock-Hewn Heritage
                 </Link>
               </li>
               <li>

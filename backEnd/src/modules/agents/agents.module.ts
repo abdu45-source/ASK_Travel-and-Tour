@@ -5,11 +5,21 @@ import { User } from '../../entities/user.entity';
 import { Client } from '../../entities/client.entity';
 import { Booking } from '../../entities/booking.entity';
 import { AgentReferralCode } from '../../entities/agent-referral-code.entity';
+import { PendingRegistration } from '../../entities/pending-registration.entity';
 import { AgentsService } from './agents.service';
 import { AgentsController } from './agents.controller';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Agent, User, Client, Booking, AgentReferralCode])],
+  imports: [
+    TypeOrmModule.forFeature([
+      Agent,
+      User,
+      Client,
+      Booking,
+      AgentReferralCode,
+      PendingRegistration,
+    ]),
+  ],
   controllers: [AgentsController],
   providers: [AgentsService],
   exports: [AgentsService],

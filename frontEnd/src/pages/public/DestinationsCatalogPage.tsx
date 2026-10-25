@@ -31,7 +31,7 @@ export const ETHIOPIAN_REGIONS = [
   { value: 'South Ethiopia', label: 'South Ethiopia (Omo Valley, Wolaita)' },
   { value: 'Oromia', label: 'Oromia (Bale Mountains, Lakes)' },
   { value: 'Afar', label: 'Afar (Danakil Depression, Erta Ale)' },
-  { value: 'Tigray', label: 'Tigray (Axum, Gheralta Churches)' },
+  { value: 'Tigray', label: 'Tigray (Axum, Gheralta Pinnacles & Axum)' },
   { value: 'Harari', label: 'Harari (Historic Walled City of Harar)' },
 ];
 

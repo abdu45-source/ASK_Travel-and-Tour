@@ -74,24 +74,24 @@ export const HomePage: React.FC = () => {
       description: 'Mount Damota hiking, King Tona historical defensive trenches, and twin Ajora waterfalls cascading into lush green gorges.',
     },
     {
-      title: 'Lake Tana Monasteries & Blue Nile Falls',
+      title: 'Lake Tana Islands & Blue Nile Falls',
       slug: 'lake-tana-blue-nile-bahir-dar',
       region: 'Amhara (Bahir Dar)',
       price: 12000,
       duration: '2 Days',
       image: '/images/destinations/blue-nile-falls-tis-abay-close.jpg',
       badge: 'Bahir Dar Circuit',
-      description: 'Island monasteries painted with medieval murals and the thundering majesty of Tis Abay waterfall in Bahir Dar.',
+      description: 'Scenic Lake Tana islands adorned with ancient cultural heritage and the thundering majesty of Tis Abay waterfall in Bahir Dar.',
     },
     {
-      title: 'Lalibela Rock-Hewn Monolithic Churches',
+      title: 'Lalibela Rock-Hewn Monolithic Heritage',
       slug: 'lalibela-rock-hewn-churches',
       region: 'Amhara',
       price: 18500,
       duration: '3 Days',
       image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80',
       badge: 'Eighth Wonder',
-      description: '11 medieval underground churches carved from living red volcanic stone under the reign of King Lalibela.',
+      description: '11 medieval underground monolithic sanctuaries carved from living red volcanic stone under the reign of King Lalibela.',
     },
     {
       title: 'Simien Mountains Escarpments & Geladas',
@@ -429,7 +429,7 @@ export const HomePage: React.FC = () => {
             </p>
             <div className="pt-4 flex flex-wrap gap-4">
               <Link
-                to="/register"
+                to="/apply-agent"
                 className="rounded-2xl bg-amber-500 px-6 py-3 text-xs font-bold text-stone-900 hover:bg-amber-400 transition-colors shadow-lg shadow-amber-500/20"
               >
                 Join Agent Network

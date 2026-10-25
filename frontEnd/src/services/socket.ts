@@ -9,8 +9,10 @@ export const getSocket = (): Socket => {
   if (!socket) {
     socket = io(SOCKET_URL, {
       autoConnect: false,
+      transports: ['websocket', 'polling'],
       auth: (cb) => {
-        cb({ token: getAccessToken() });
+        const token = getAccessToken();
+        cb(token ? { token } : {});
       },
     });
   }

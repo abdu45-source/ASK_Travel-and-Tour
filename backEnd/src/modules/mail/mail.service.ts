@@ -395,6 +395,63 @@ export class MailService {
   }
 
   /**
+   * Send Application Confirmation to prospective Travel Agent
+   */
+  async sendAgentApplicationReceivedEmail(
+    toEmail: string,
+    applicantName: string,
+  ): Promise<EmailDispatchResult> {
+    const subject = 'ASK Travel Agent Network — Application Received';
+    const html = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f7f6f3; margin: 0; padding: 24px; color: #292524; }
+    .container { max-width: 580px; margin: 0 auto; background: #ffffff; border-radius: 16px; border: 1px solid #e7e5e4; overflow: hidden; }
+    .header { background: #0f172a; padding: 32px; text-align: center; }
+    .header h1 { color: #f59e0b; margin: 0; font-size: 22px; font-weight: 700; letter-spacing: 0.5px; }
+    .header p { color: #94a3b8; margin: 6px 0 0; font-size: 13px; }
+    .content { padding: 32px; }
+    .status-badge { display: inline-block; background: #fef3c7; color: #92400e; font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 20px; border: 1px solid #fde68a; margin-bottom: 16px; }
+    .card { background: #fafaf9; border: 1px solid #e7e5e4; border-radius: 12px; padding: 18px; margin: 20px 0; }
+    .footer { background: #fafaf9; border-top: 1px solid #f5f5f4; padding: 20px 32px; text-align: center; font-size: 11px; color: #a8a29e; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>ASK TRAVEL PARTNER NETWORK</h1>
+      <p>Partner Agent Application Acknowledgement</p>
+    </div>
+    <div class="content">
+      <div class="status-badge">Application Status: Under Manager Review</div>
+      <h2 style="font-size: 18px; margin-top: 0;">Dear ${applicantName},</h2>
+      <p>Thank you for submitting your application to join the <strong>ASK Travel Partner Agent Network</strong>. Your credentials and payout details have been submitted to our Agency Manager and System Owner for verification.</p>
+      
+      <div class="card">
+        <h3 style="font-size: 13px; text-transform: uppercase; color: #78716c; margin: 0 0 10px;">Next Steps:</h3>
+        <ol style="margin: 0; padding-left: 20px; font-size: 13px; color: #44403c; line-height: 1.6;">
+          <li>Our management team is reviewing your agency profile and verification details.</li>
+          <li>Upon approval, your partner account will be activated, and you will receive your official <strong>8-character exclusive referral code</strong>.</li>
+          <li>You will be able to log in to the Partner Portal and earn an automated <strong>10% commission</strong> on every traveler booking!</li>
+        </ol>
+      </div>
+
+      <p style="font-size: 12px; color: #78716c;">If you have any questions, feel free to contact our Bahir Dar headquarters at <a href="mailto:owner@askdigital.et" style="color: #059669;">owner@askdigital.et</a>.</p>
+    </div>
+    <div class="footer">
+      <p>© 2026 ASK Tour & Travel Agency • Certified Partner of Ethiopian Tourism Board</p>
+    </div>
+  </div>
+</body>
+</html>
+`;
+    return this.sendMail({ to: toEmail, subject, html });
+  }
+
+  /**
    * 3. Send Executive Notification Email to the Owner
    */
   async sendOwnerExecutiveAlert(

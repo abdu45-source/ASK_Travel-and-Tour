@@ -7,6 +7,7 @@ import { DestinationsCatalogPage } from './pages/public/DestinationsCatalogPage'
 import { DestinationDetailPage } from './pages/public/DestinationDetailPage';
 import { LoginPage } from './pages/public/LoginPage';
 import { RegisterPage } from './pages/public/RegisterPage';
+import { AgentApplicationPage } from './pages/public/AgentApplicationPage';
 import { OwnerDashboard } from './pages/dashboard/OwnerDashboard';
 import { ManagerDashboard } from './pages/dashboard/ManagerDashboard';
 import { AgentDashboard } from './pages/dashboard/AgentDashboard';
@@ -23,6 +24,7 @@ export const App: React.FC = () => {
         <Route path="/destinations/:slug" element={<DestinationDetailPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/apply-agent" element={<AgentApplicationPage />} />
       </Route>
 
       {/* Dashboard Routes with Sidebar and Header */}

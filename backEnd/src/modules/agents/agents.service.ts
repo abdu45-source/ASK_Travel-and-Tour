@@ -13,6 +13,7 @@ import { User } from '../../entities/user.entity';
 import { Client } from '../../entities/client.entity';
 import { Booking } from '../../entities/booking.entity';
 import { AgentReferralCode } from '../../entities/agent-referral-code.entity';
+import { PendingRegistration } from '../../entities/pending-registration.entity';
 import { UserStatus, BookingStatus } from '../../common/enums/domain.enums';
 import { RbacService } from '../rbac/rbac.service';
 import { AuditService } from '../audit/audit.service';
@@ -31,6 +32,8 @@ export class AgentsService {
     private bookingRepo: Repository<Booking>,
     @InjectRepository(AgentReferralCode)
     private dynamicCodeRepo: Repository<AgentReferralCode>,
+    @InjectRepository(PendingRegistration)
+    private pendingRepo: Repository<PendingRegistration>,
     private rbacService: RbacService,
     private auditService: AuditService,
     private mailService: MailService,
@@ -498,6 +501,142 @@ export class AgentsService {
       message: `Fresh invitation email with code ${dynamicRecord.code} was resent to ${dynamicRecord.client_email}!`,
       code: dynamicRecord.code,
       isRealSent: dispatchRes.provider === 'brevo' || dispatchRes.provider === 'smtp',
+    };
+  }
+
+  async applyToJoinAgentNetwork(data: {
+    name: string;
+    email: string;
+    phone?: string;
+    payout_details?: string;
+    city_or_region?: string;
+    experience_notes?: string;
+    password?: string;
+  }) {
+    const emailNorm = data.email.toLowerCase().trim();
+    const existing = await this.userRepo.findOne({ where: { email: emailNorm } });
+    if (existing) {
+      throw new ConflictException(
+        'An account with this email address already exists in the system. Please log in or use a different email address.',
+      );
+    }
+
+    const defaultPass = data.password && data.password.length >= 8 ? data.password : 'Agent@2026!';
+    const password_hash = await bcrypt.hash(defaultPass, 12);
+    const payout = data.payout_details || 'Commercial Bank of Ethiopia (CBE) / Telebirr';
+
+    let pending = await this.pendingRepo.findOne({ where: { email: emailNorm } });
+    const expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // 30 days validity
+
+    if (!pending) {
+      pending = this.pendingRepo.create({
+        email: emailNorm,
+        name: data.name.trim(),
+        phone: data.phone || null,
+        password_hash,
+        role: 'AGENT',
+        referral_code: 'PENDING_APPROVAL',
+        payout_details: `${payout} | Location: ${data.city_or_region || 'Ethiopia'} | Experience: ${data.experience_notes || 'None provided'}`,
+        attempts: 0,
+        expires_at: expiresAt,
+      });
+    } else {
+      pending.name = data.name.trim();
+      pending.phone = data.phone || pending.phone;
+      pending.password_hash = password_hash;
+      pending.role = 'AGENT';
+      pending.payout_details = `${payout} | Location: ${data.city_or_region || 'Ethiopia'} | Experience: ${data.experience_notes || 'None provided'}`;
+      pending.expires_at = expiresAt;
+    }
+    await this.pendingRepo.save(pending);
+
+    // Send confirmation email to applicant
+    this.mailService
+      .sendAgentApplicationReceivedEmail(emailNorm, data.name.trim())
+      .catch((err) => console.error('Failed to send agent application received email:', err));
+
+    // Send executive alert to System Owner / Manager
+    const frontendUrl = process.env.FRONTEND_URL || 'https://admirable-unicorn-ec175c.netlify.app';
+    this.mailService
+      .sendOwnerExecutiveAlert(
+        `New Travel Agent Application: ${data.name.trim()}`,
+        'Candidate Submitted Partner Application for Review',
+        {
+          candidate_name: data.name.trim(),
+          email: emailNorm,
+          phone: data.phone || 'Not provided',
+          payout_method: payout,
+          operating_region: data.city_or_region || 'Not specified',
+          experience_overview: data.experience_notes || 'Not specified',
+          submitted_at: new Date().toISOString(),
+        },
+        `${frontendUrl}/dashboard/owner`,
+      )
+      .catch((err) => console.error('Failed to send owner executive alert:', err));
+
+    return {
+      success: true,
+      message:
+        'Your application to join the ASK Travel Agent Network has been submitted! Our Agency Manager and Owner have been notified, and an official confirmation email has been dispatched to your inbox.',
+    };
+  }
+
+  async getPendingApplications() {
+    return this.pendingRepo.find({
+      where: { role: 'AGENT' },
+      order: { created_at: 'DESC' },
+    });
+  }
+
+  async approveApplication(applicationId: string, managerId: string) {
+    const pending = await this.pendingRepo.findOne({ where: { id: applicationId } });
+    if (!pending) {
+      throw new NotFoundException('Pending agent application not found');
+    }
+
+    // Extract payout details
+    const payout = pending.payout_details?.split('|')?.[0]?.trim() || pending.payout_details;
+
+    // Register agent officially
+    const result = await this.registerAgent(
+      {
+        name: pending.name,
+        email: pending.email,
+        phone: pending.phone,
+        payout_details: payout,
+      },
+      managerId,
+    );
+
+    // Remove from pending registrations
+    await this.pendingRepo.delete({ id: applicationId });
+
+    return {
+      success: true,
+      message: `Agent ${pending.name} has been successfully approved and onboarded!`,
+      agent: result,
+    };
+  }
+
+  async rejectApplication(applicationId: string, managerId: string) {
+    const pending = await this.pendingRepo.findOne({ where: { id: applicationId } });
+    if (!pending) {
+      throw new NotFoundException('Pending agent application not found');
+    }
+
+    await this.pendingRepo.delete({ id: applicationId });
+
+    await this.auditService.log({
+      actorId: managerId,
+      action: 'AGENT_APPLICATION_REJECTED',
+      entityType: 'PendingRegistration',
+      entityId: applicationId,
+      after: { name: pending.name, email: pending.email },
+    });
+
+    return {
+      success: true,
+      message: `Application for ${pending.name} has been rejected.`,
     };
   }
 }

@@ -12,7 +12,7 @@ import {
 import { AgentsService } from './agents.service';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { PermissionsGuard } from '../../common/guards/permissions.guard';
-import { RequirePermission } from '../../common/decorators/require-permission.decorator';
+import { RequirePermission, Public } from '../../common/decorators/require-permission.decorator';
 import { Permission, PermissionScope } from '../../common/enums/permissions.enum';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 
@@ -129,5 +129,46 @@ export class AgentsController {
   @RequirePermission(Permission.AGENT_READ)
   async getAgent(@Param('id') id: string) {
     return this.agentsService.findOne(id);
+  }
+
+  @Public()
+  @Post('apply')
+  async applyToJoinAgentNetwork(
+    @Body()
+    body: {
+      name: string;
+      email: string;
+      phone?: string;
+      payout_details?: string;
+      city_or_region?: string;
+      experience_notes?: string;
+      password?: string;
+    },
+  ) {
+    return this.agentsService.applyToJoinAgentNetwork(body);
+  }
+
+  @Get('pending-applications')
+  @RequirePermission(Permission.AGENT_CREATE)
+  async getPendingApplications() {
+    return this.agentsService.getPendingApplications();
+  }
+
+  @Post('pending-applications/:id/approve')
+  @RequirePermission(Permission.AGENT_CREATE)
+  async approveApplication(
+    @Param('id') applicationId: string,
+    @CurrentUser('id') managerId: string,
+  ) {
+    return this.agentsService.approveApplication(applicationId, managerId);
+  }
+
+  @Post('pending-applications/:id/reject')
+  @RequirePermission(Permission.AGENT_CREATE)
+  async rejectApplication(
+    @Param('id') applicationId: string,
+    @CurrentUser('id') managerId: string,
+  ) {
+    return this.agentsService.rejectApplication(applicationId, managerId);
   }
 }

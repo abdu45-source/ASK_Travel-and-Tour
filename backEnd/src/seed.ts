@@ -302,10 +302,10 @@ async function seed() {
   // 4. Seed Destinations
   const destinationsData = [
     {
-        "title": "Lalibela Rock-Hewn Churches",
+        "title": "Lalibela Rock-Hewn Monolithic Heritage",
         "slug": "lalibela-rock-hewn-churches",
         "region": "Amhara",
-        "short_description": "Explore the 12th-century UNESCO World Heritage monolithic churches carved out of red volcanic stone.",
+        "short_description": "Explore the 12th-century UNESCO World Heritage monolithic sanctuaries carved out of red volcanic stone.",
         "description": "Lalibela is a holy town in northern Ethiopia, famed for its extraordinary rock-hewn monolithic churches dating from the 12th and 13th centuries under King Lalibela. Regarded as the \"Eighth Wonder of the World\", these 11 interconnected underground structures include the legendary cruciform Church of St. George (Bete Giyorgis). Experience sacred chants, incense-filled catacombs, and breathtaking mountain vistas.",
         "base_price": 18500,
         "duration_days": 3,
@@ -444,7 +444,7 @@ async function seed() {
         ]
     },
     {
-        "title": "Lake Tana Monasteries & Blue Nile Falls",
+        "title": "Lake Tana Islands & Blue Nile Falls",
         "slug": "lake-tana-blue-nile-bahir-dar",
         "region": "Amhara",
         "short_description": "Boat cruises across Ethiopia’s largest lake, ancient island monasteries, and the thundering Blue Nile waterfall.",
@@ -796,10 +796,10 @@ async function seed() {
         ]
     },
     {
-        "title": "Tigray: Gheralta Rock Churches & Ancient Axum",
+        "title": "Tigray: Gheralta Sandstone Pinnacles & Ancient Axum",
         "slug": "tigray-gheralta-churches-axum",
         "region": "Tigray",
-        "short_description": "Ascend sandstone pinnacles to cliffside cave churches in Gheralta and discover Axum's ancient monolithic stelae.",
+        "short_description": "Ascend sandstone pinnacles to cliffside cave sanctuaries in Gheralta and discover Axum's ancient monolithic stelae.",
         "description": "The Gheralta mountains rise like giant rust-red cathedrals from the Tigray plateau. Scale the breathtaking sandstone face to Abuna Yemata Guh, carved high inside a cliff pinnacle with ancient frescoes. Continue to holy Axum, cradle of Ethiopian civilization, to stand before towering 1,700-year-old granite obelisks and the revered Church of St. Mary of Zion, ancient home of the Ark of the Covenant.",
         "base_price": 29000,
         "duration_days": 4,

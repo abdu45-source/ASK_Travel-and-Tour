@@ -39,3 +39,4 @@ export function handleImageError(
     target.src = fallback;
   }
 }
+

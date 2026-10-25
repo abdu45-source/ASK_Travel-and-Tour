@@ -71,16 +71,18 @@ export const ManagerDashboard: React.FC = () => {
   const [payoutMethod, setPayoutMethod] = useState('Commercial Bank of Ethiopia (CBE)');
   const [payoutReference, setPayoutReference] = useState('');
   const [processingPayout, setProcessingPayout] = useState(false);
+  const [pendingApplications, setPendingApplications] = useState<any[]>([]);
 
   const fetchManagerData = async () => {
     try {
-      const [dashRes, pendingRes, allBkgRes, agtRes, cltRes, dailyRes] = await Promise.all([
+      const [dashRes, pendingRes, allBkgRes, agtRes, cltRes, dailyRes, appRes] = await Promise.all([
         api.get('/dashboard/manager'),
         api.get('/bookings?status=PENDING'),
         api.get('/bookings'),
         api.get('/agents'),
         api.get('/clients'),
         api.get('/reports/daily').catch(() => ({ data: null })),
+        api.get('/agents/pending-applications').catch(() => ({ data: [] })),
       ]);
       setData(dashRes.data);
       setPendingBookings(pendingRes.data.items || []);
@@ -88,6 +90,7 @@ export const ManagerDashboard: React.FC = () => {
       setAgents(agtRes.data || []);
       setClients(cltRes.data || []);
       setDailyReport(dailyRes.data);
+      setPendingApplications(appRes?.data || []);
 
       if (agtRes.data?.length > 0 && !payoutAgentId) {
         setPayoutAgentId(agtRes.data[0].id);
@@ -102,6 +105,25 @@ export const ManagerDashboard: React.FC = () => {
   useEffect(() => {
     fetchManagerData();
   }, []);
+
+  const handleApproveApplication = async (id: string) => {
+    try {
+      await api.post(`/agents/pending-applications/${id}/approve`);
+      fetchManagerData();
+    } catch (err: any) {
+      alert(err.response?.data?.message || 'Failed to approve application');
+    }
+  };
+
+  const handleRejectApplication = async (id: string) => {
+    if (!window.confirm('Are you sure you want to decline this agent application?')) return;
+    try {
+      await api.post(`/agents/pending-applications/${id}/reject`);
+      fetchManagerData();
+    } catch (err: any) {
+      alert(err.response?.data?.message || 'Failed to reject application');
+    }
+  };
 
   const handleModeration = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -996,6 +1018,68 @@ export const ManagerDashboard: React.FC = () => {
 
       {/* TAB 5: AGENTS & REFERRAL CODE MANAGEMENT */}
       {activeTab === 'agents' && (
+        <div className="space-y-6">
+          {/* Pending Applications Box */}
+          {pendingApplications.length > 0 && (
+            <div className="rounded-3xl bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-300 p-6 shadow-sm space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <span className="flex h-3 w-3 relative">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
+                  </span>
+                  <h4 className="font-serif text-lg font-bold text-amber-950">
+                    Pending Travel Agent Applications ({pendingApplications.length})
+                  </h4>
+                </div>
+                <span className="text-xs text-amber-800 bg-amber-200/60 px-3 py-1 rounded-full font-bold">
+                  Manager Action Required
+                </span>
+              </div>
+              <p className="text-xs text-stone-600">
+                The following candidates submitted registration requests via "Join Agent Network". Click Approve to activate their partner profile and issue their unique 8-character referral code.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+                {pendingApplications.map((app) => (
+                  <div key={app.id} className="bg-white rounded-2xl p-4 border border-amber-200 shadow-xs flex flex-col justify-between space-y-3">
+                    <div>
+                      <div className="flex items-start justify-between">
+                        <span className="font-bold text-sm text-stone-900">{app.name}</span>
+                        <span className="text-[10px] bg-stone-100 text-stone-500 px-2 py-0.5 rounded font-mono">
+                          {new Date(app.created_at).toLocaleDateString()}
+                        </span>
+                      </div>
+                      <div className="text-xs text-stone-600 space-y-0.5 mt-1.5">
+                        <p><strong>Email:</strong> {app.email}</p>
+                        {app.phone && <p><strong>Phone:</strong> {app.phone}</p>}
+                        {app.payout_details && (
+                          <p className="text-[11px] text-amber-900 bg-amber-50 p-1.5 rounded-lg border border-amber-100 mt-1">
+                            {app.payout_details}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 pt-2 border-t border-stone-100">
+                      <button
+                        onClick={() => handleApproveApplication(app.id)}
+                        className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-xl text-xs transition-colors shadow-xs"
+                      >
+                        ✓ Approve & Issue Code
+                      </button>
+                      <button
+                        onClick={() => handleRejectApplication(app.id)}
+                        className="px-3 bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold py-2 rounded-xl text-xs transition-colors"
+                      >
+                        Decline
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
         <div className="rounded-3xl bg-white border border-stone-200 p-6 sm:p-8 shadow-sm space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-100 pb-4">
             <div>
@@ -1081,6 +1165,7 @@ export const ManagerDashboard: React.FC = () => {
               </tbody>
             </table>
           </div>
+        </div>
         </div>
       )}
 
