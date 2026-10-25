@@ -21,6 +21,7 @@ import {
 import { api } from '../../services/api';
 import { Destination } from '../../types';
 import { useAuth } from '../../context/AuthContext';
+import { getDestinationImageUrl, handleImageError } from '../../utils/imageUrl';
 
 export const ETHIOPIAN_REGIONS = [
   { value: 'ALL', label: 'All Regions (All Ethiopia)' },
@@ -408,8 +409,9 @@ export const DestinationsCatalogPage: React.FC = () => {
                 {/* Image */}
                 <div className="relative h-60 w-full overflow-hidden">
                   <img
-                    src={d.gallery_images?.[0] || '/images/destinations/gondar-fasilides-castle-unesco.jpg'}
+                    src={getDestinationImageUrl(d.gallery_images?.[0])}
                     alt={d.title}
+                    onError={handleImageError}
                     className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-4 left-4 rounded-full bg-stone-900/80 backdrop-blur-md px-3 py-1 text-[11px] font-semibold text-amber-300">

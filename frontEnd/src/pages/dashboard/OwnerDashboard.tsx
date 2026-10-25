@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { getDestinationImageUrl, handleImageError } from '../../utils/imageUrl';
 import { Link } from 'react-router-dom';
 import {
   DollarSign,
@@ -816,8 +817,9 @@ export const OwnerDashboard: React.FC = () => {
                     <td className="py-3 px-4">
                       <div className="flex items-center gap-3">
                         <img
-                          src={d.gallery_images?.[0] || '/images/destinations/gondar-fasilides-castle-unesco.jpg'}
+                          src={getDestinationImageUrl(d.gallery_images?.[0])}
                           alt={d.title}
+                          onError={handleImageError}
                           className="h-9 w-9 rounded-xl object-cover shrink-0 border border-stone-200"
                         />
                         <div>

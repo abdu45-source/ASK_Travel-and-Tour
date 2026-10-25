@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { api } from '../../services/api';
 import { Destination } from '../../types';
+import { getDestinationImageUrl, handleImageError } from '../../utils/imageUrl';
 import { useAuth } from '../../context/AuthContext';
 import { EthiopianPaymentModal } from '../../components/common/EthiopianPaymentModal';
 
@@ -228,8 +229,9 @@ export const DestinationDetailPage: React.FC = () => {
         <div className="space-y-3">
           <div className="h-[420px] sm:h-[500px] w-full rounded-3xl overflow-hidden shadow-md">
             <img
-              src={selectedImage || dest.gallery_images[0]}
+              src={getDestinationImageUrl(selectedImage || dest.gallery_images?.[0])}
               alt={dest.title}
+              onError={handleImageError}
               className="h-full w-full object-cover"
             />
           </div>
@@ -244,7 +246,7 @@ export const DestinationDetailPage: React.FC = () => {
                     selectedImage === img ? 'border-primary-600 scale-95' : 'border-transparent opacity-75 hover:opacity-100'
                   }`}
                 >
-                  <img src={img} alt="" className="h-full w-full object-cover" />
+                  <img src={getDestinationImageUrl(img)} alt="" onError={handleImageError} className="h-full w-full object-cover" />
                 </button>
               ))}
             </div>

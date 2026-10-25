@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { getDestinationImageUrl, handleImageError } from '../../utils/imageUrl';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   Search,
@@ -243,8 +244,9 @@ export const HomePage: React.FC = () => {
               {/* Image Container */}
               <div className="relative h-60 w-full overflow-hidden">
                 <img
-                  src={d.image}
+                  src={getDestinationImageUrl(d.image)}
                   alt={d.title}
+                  onError={handleImageError}
                   className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute top-4 left-4 rounded-full bg-stone-900/80 backdrop-blur-md px-3 py-1 text-[11px] font-semibold text-amber-300">
