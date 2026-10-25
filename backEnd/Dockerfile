@@ -18,5 +18,5 @@ RUN npm run build
 # Expose port (Render automatically provides $PORT)
 EXPOSE 3000
 
-# Start server directly with node
-CMD ["node", "dist/main.js"]
+# Start server with auto-seeding on initial deployment
+CMD ["sh", "-c", "node dist/seed.js || true; node dist/main.js"]

@@ -1,11 +1,13 @@
 import { io, Socket } from 'socket.io-client';
-import { getAccessToken } from './api';
+import { getAccessToken, API_BASE_URL } from './api';
 
 let socket: Socket | null = null;
 
+export const SOCKET_URL = API_BASE_URL.replace(/\/api\/v1\/?$/, '');
+
 export const getSocket = (): Socket => {
   if (!socket) {
-    socket = io('http://localhost:3000', {
+    socket = io(SOCKET_URL, {
       autoConnect: false,
       auth: (cb) => {
         cb({ token: getAccessToken() });

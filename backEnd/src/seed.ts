@@ -18,6 +18,8 @@ import { AuditLog } from './entities/audit-log.entity';
 import { AppSetting } from './entities/app-setting.entity';
 import { RefreshSession } from './entities/refresh-session.entity';
 import { Payment } from './entities/payment.entity';
+import { PendingRegistration } from './entities/pending-registration.entity';
+import { AgentReferralCode } from './entities/agent-referral-code.entity';
 import { Permission, PermissionScope } from './common/enums/permissions.enum';
 import {
   UserStatus,
@@ -41,7 +43,10 @@ async function seed() {
           database: process.env.DB_NAME || 'travel_tour_db',
         }),
     ssl:
-      process.env.DB_SSL === 'true' || process.env.DATABASE_URL?.includes('sslmode=require')
+      process.env.DB_SSL === 'true' ||
+      (process.env.DATABASE_URL &&
+        !process.env.DATABASE_URL.includes('localhost') &&
+        !process.env.DATABASE_URL.includes('127.0.0.1'))
         ? { rejectUnauthorized: false }
         : false,
     entities: [
@@ -63,6 +68,8 @@ async function seed() {
       Message,
       AuditLog,
       AppSetting,
+      PendingRegistration,
+      AgentReferralCode,
     ],
     synchronize: true,
   });

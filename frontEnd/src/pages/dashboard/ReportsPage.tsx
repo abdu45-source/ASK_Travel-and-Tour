@@ -11,7 +11,7 @@ import {
   Shield,
   CheckCircle,
 } from 'lucide-react';
-import { api, getAccessToken } from '../../services/api';
+import { api, getAccessToken, API_BASE_URL } from '../../services/api';
 import { Booking, BookingStatus } from '../../types';
 
 export const ReportsPage: React.FC = () => {
@@ -85,7 +85,7 @@ export const ReportsPage: React.FC = () => {
       if (endDate) params.append('endDate', endDate);
 
       const response = await fetch(
-        `http://localhost:3000/api/v1/reports/export/excel?${params.toString()}`,
+        `${API_BASE_URL}/reports/export/excel?${params.toString()}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -128,7 +128,7 @@ export const ReportsPage: React.FC = () => {
       if (endDate) params.append('endDate', endDate);
 
       const response = await fetch(
-        `http://localhost:3000/api/v1/reports/export/pdf?${params.toString()}`,
+        `${API_BASE_URL}/reports/export/pdf?${params.toString()}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

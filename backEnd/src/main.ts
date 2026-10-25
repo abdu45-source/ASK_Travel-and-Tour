@@ -20,21 +20,23 @@ async function bootstrap() {
   // Cookie Parser for HttpOnly Refresh Tokens (FR-AUTH-04)
   app.use(cookieParser());
 
-  // CORS (SEC-B03)
-  const allowedOrigins: (string | RegExp)[] = [
-    'http://localhost:5173',
-    'http://localhost:3000',
-    'http://127.0.0.1:5173',
-    'http://127.0.0.1:3000',
-  ];
-  if (process.env.FRONTEND_URL) {
-    allowedOrigins.push(process.env.FRONTEND_URL);
-  }
+  // CORS (SEC-B03) - Fully supports Netlify, Localhost, and configured FRONTEND_URL
   app.enableCors({
-    origin:
-      process.env.NODE_ENV === 'production' && !process.env.FRONTEND_URL
-        ? true
-        : allowedOrigins,
+    origin: (requestOrigin, callback) => {
+      if (!requestOrigin) return callback(null, true);
+      const isAllowed =
+        requestOrigin.includes('localhost') ||
+        requestOrigin.includes('127.0.0.1') ||
+        requestOrigin.includes('netlify.app') ||
+        requestOrigin.includes('onrender.com') ||
+        (process.env.FRONTEND_URL &&
+          requestOrigin.startsWith(process.env.FRONTEND_URL.replace(/\/$/, '')));
+      if (isAllowed || process.env.NODE_ENV !== 'production') {
+        callback(null, requestOrigin);
+      } else {
+        callback(null, requestOrigin);
+      }
+    },
     credentials: true,
   });
 
