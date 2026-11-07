@@ -37,7 +37,7 @@ export const ReportsPage: React.FC = () => {
       const a = document.createElement('a');
       a.href = url;
       const prefix = booking.status === BookingStatus.CANCELLED ? 'Statement' : 'Voucher';
-      a.download = `ASK_Travel_${prefix}_${booking.id.substring(0, 8)}.pdf`;
+      a.download = `Ihsan_Travel_${prefix}_${booking.id.substring(0, 8)}.pdf`;
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -106,7 +106,7 @@ export const ReportsPage: React.FC = () => {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `ASK_Travel_Bookings_Report_${Date.now()}.xlsx`;
+      a.download = `Ihsan_Travel_Bookings_Report_${Date.now()}.xlsx`;
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -149,7 +149,7 @@ export const ReportsPage: React.FC = () => {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `ASK_Travel_Bookings_Report_${Date.now()}.pdf`;
+      a.download = `Ihsan_Travel_Bookings_Report_${Date.now()}.pdf`;
       document.body.appendChild(a);
       a.click();
       a.remove();

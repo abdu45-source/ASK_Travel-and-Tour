@@ -187,7 +187,7 @@ export class AuthService {
     this.mailService
       .sendOwnerExecutiveAlert(
         'New Client Registration',
-        'New Traveler Registered at ASK Ethiopia Tours',
+        'New Traveler Registered at Ihsan Travel and Tour',
         {
           traveler_name: savedUser.name,
           email: savedUser.email,
@@ -325,7 +325,7 @@ export class AuthService {
         if (!col) isUnique = true;
       }
     } else {
-      generatedReferralCode = this.generateReferralCode('ASK', 6);
+      generatedReferralCode = this.generateReferralCode('IHSAN', 6);
     }
 
     const password_hash = await bcrypt.hash(data.password, 12);
@@ -404,8 +404,8 @@ export class AuthService {
     }
 
     const expectedCode = pending.referral_code.toUpperCase().replace(/\s+/g, '').trim();
-    const codeWithoutPrefix = expectedCode.replace(/^ASK-|^AGT-|^REF-/, '');
-    const userWithoutPrefix = codeNorm.replace(/^ASK-|^AGT-|^REF-/, '');
+    const codeWithoutPrefix = expectedCode.replace(/^IHSAN-|^ASK-|^AGT-|^REF-/, '');
+    const userWithoutPrefix = codeNorm.replace(/^IHSAN-|^ASK-|^AGT-|^REF-/, '');
 
     const isMatch = codeNorm === expectedCode || userWithoutPrefix === codeWithoutPrefix;
 
@@ -498,7 +498,7 @@ export class AuthService {
       this.mailService
         .sendOwnerExecutiveAlert(
           'New Client Registration',
-          'New Traveler Registered at ASK Ethiopia Tours',
+          'New Traveler Registered at Ihsan Travel and Tour',
           {
             traveler_name: savedUser.name,
             email: savedUser.email,
@@ -565,7 +565,7 @@ export class AuthService {
     if (pending.role === 'AGENT') {
       pending.referral_code = this.generateReferralCode('', 8);
     } else {
-      pending.referral_code = this.generateReferralCode('ASK', 6);
+      pending.referral_code = this.generateReferralCode('IHSAN', 6);
     }
     pending.expires_at = new Date(Date.now() + 30 * 60 * 1000);
     pending.attempts = 0;

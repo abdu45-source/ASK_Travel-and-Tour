@@ -33,7 +33,7 @@ export class MailService {
     this.senderEmail =
       this.configService.get<string>('BREVO_SENDER_EMAIL') || 'npath254@gmail.com';
     this.senderName =
-      this.configService.get<string>('BREVO_SENDER_NAME') || 'Ask Tour and Travel';
+      this.configService.get<string>('BREVO_SENDER_NAME') || 'Ihsan Travel and Tour';
     this.ownerEmail =
       this.configService.get<string>('OWNER_EMAIL') || 'owner@askdigital.et';
 
@@ -187,7 +187,7 @@ export class MailService {
     role: string = 'CLIENT',
   ): Promise<EmailDispatchResult> {
     const roleTitle = role === 'AGENT' ? 'Authorized Partner Agent' : 'Valued Traveler';
-    const subject = `Your ASK Tour & Travel Referral & Access Code: ${referralCode}`;
+    const subject = `Your Ihsan Travel and Tour Referral & Access Code: ${referralCode}`;
     const html = `
 <!DOCTYPE html>
 <html>
@@ -212,12 +212,12 @@ export class MailService {
 <body>
   <div class="container">
     <div class="header">
-      <h1>ASK ETHIOPIA TOURS</h1>
+      <h1>IHSAN TRAVEL AND TOUR</h1>
       <p>Secure Account Onboarding & Referral Activation</p>
     </div>
     <div class="content">
       <h2>Hello, ${name}!</h2>
-      <p>You have initiated registration as an <strong>${roleTitle}</strong> at ASK Ethiopian Tour & Travel.</p>
+      <p>You have initiated registration as an <strong>${roleTitle}</strong> at Ihsan Travel and Tour.</p>
       <p>Here is your exclusive <strong>Referral & Account Access Code</strong>:</p>
       
       <div class="code-box">
@@ -236,7 +236,7 @@ export class MailService {
       </p>
     </div>
     <div class="footer">
-      <p>© 2026 ASK Digital Technologies & Tour Operator. Kebele 04, Bahir Dar, Ethiopia.</p>
+      <p>© 2026 Ihsan Travel and Tour. Kebele 04, Bahir Dar, Ethiopia.</p>
     </div>
   </div>
 </body>
@@ -249,7 +249,7 @@ export class MailService {
    * 1. Send Welcome Email to Client on Sign Up
    */
   async sendClientWelcomeEmail(toEmail: string, clientName: string): Promise<EmailDispatchResult> {
-    const subject = 'Welcome to ASK Ethiopian Tour & Travel — Your Journey Begins';
+    const subject = 'Welcome to Ihsan Travel and Tour — Your Journey Begins';
     const html = `
 <!DOCTYPE html>
 <html>
@@ -275,12 +275,12 @@ export class MailService {
 <body>
   <div class="container">
     <div class="header">
-      <h1>ASK ETHIOPIA TOURS</h1>
+      <h1>IHSAN TRAVEL AND TOUR</h1>
       <p>Premier Expedition & Heritage Management</p>
     </div>
     <div class="content">
       <h2>Welcome, ${clientName}!</h2>
-      <p>Thank you for creating an account with ASK Ethiopian Tour & Travel. We are thrilled to welcome you to the cradle of humanity.</p>
+      <p>Thank you for creating an account with Ihsan Travel and Tour. We are thrilled to welcome you to the cradle of humanity.</p>
       <p>Your account is fully activated. You can now explore curated expeditions, access live seasonal pricing in ETB, and manage all your booking reservations seamlessly.</p>
       
       <div class="card">
@@ -301,7 +301,7 @@ export class MailService {
       </p>
     </div>
     <div class="footer">
-      <p>© 2026 ASK Digital Technologies & Tour Operator. Kebele 04, Bahir Dar, Ethiopia.</p>
+      <p>© 2026 Ihsan Travel and Tour. Kebele 04, Bahir Dar, Ethiopia.</p>
     </div>
   </div>
 </body>
@@ -319,7 +319,7 @@ export class MailService {
     referralCode: string,
     initialPassword?: string,
   ): Promise<EmailDispatchResult> {
-    const subject = `Official ASK Travel Partner Activation — Exclusive Referral Code: ${referralCode}`;
+    const subject = `Official Ihsan Travel and Tour Partner Activation — Exclusive Referral Code: ${referralCode}`;
     const referralLink = `http://localhost:5173/register?ref=${referralCode}`;
     const html = `
 <!DOCTYPE html>
@@ -348,12 +348,12 @@ export class MailService {
 <body>
   <div class="container">
     <div class="header">
-      <h1>ASK TRAVEL PARTNER PROGRAM</h1>
+      <h1>IHSAN TRAVEL PARTNER PROGRAM</h1>
       <p>Official Agency Referral Activation</p>
     </div>
     <div class="content">
       <h2 style="font-size: 18px; margin-top: 0;">Congratulations, ${agentName}!</h2>
-      <p>You have been onboarded as an authorized ASK Ethiopian Tour & Travel Partner. Your dedicated agent ledger has been created in our Bahir Dar system.</p>
+      <p>You have been onboarded as an authorized Ihsan Travel and Tour Partner. Your dedicated agent ledger has been created in our Bahir Dar system.</p>
       
       <div class="code-box">
         <div class="label">Your Exclusive Referral Code</div>
@@ -385,7 +385,7 @@ export class MailService {
     </div>
     <div class="footer">
       <p>Technical Architect & Support: Abduselam Ibrahim (abduselamibrahim85@gmail.com / 0900572995)</p>
-      <p>© 2026 ASK Digital Technologies. Kebele 04, Bahir Dar, Ethiopia.</p>
+      <p>© 2026 Ihsan Travel and Tour. Kebele 04, Bahir Dar, Ethiopia.</p>
     </div>
   </div>
 </body>
@@ -401,7 +401,7 @@ export class MailService {
     toEmail: string,
     applicantName: string,
   ): Promise<EmailDispatchResult> {
-    const subject = 'ASK Travel Agent Network — Application Received';
+    const subject = 'Ihsan Travel and Tour Agent Network — Application Received';
     const html = `
 <!DOCTYPE html>
 <html>
@@ -422,13 +422,13 @@ export class MailService {
 <body>
   <div class="container">
     <div class="header">
-      <h1>ASK TRAVEL PARTNER NETWORK</h1>
+      <h1>IHSAN TRAVEL AND TOUR PARTNER NETWORK</h1>
       <p>Partner Agent Application Acknowledgement</p>
     </div>
     <div class="content">
       <div class="status-badge">Application Status: Under Manager Review</div>
       <h2 style="font-size: 18px; margin-top: 0;">Dear ${applicantName},</h2>
-      <p>Thank you for submitting your application to join the <strong>ASK Travel Partner Agent Network</strong>. Your credentials and payout details have been submitted to our Agency Manager and System Owner for verification.</p>
+      <p>Thank you for submitting your application to join the <strong>Ihsan Travel and Tour Partner Agent Network</strong>. Your credentials and payout details have been submitted to our Agency Manager and System Owner for verification.</p>
       
       <div class="card">
         <h3 style="font-size: 13px; text-transform: uppercase; color: #78716c; margin: 0 0 10px;">Next Steps:</h3>
@@ -442,7 +442,7 @@ export class MailService {
       <p style="font-size: 12px; color: #78716c;">If you have any questions, feel free to contact our Bahir Dar headquarters at <a href="mailto:owner@askdigital.et" style="color: #059669;">owner@askdigital.et</a>.</p>
     </div>
     <div class="footer">
-      <p>© 2026 ASK Tour & Travel Agency • Certified Partner of Ethiopian Tourism Board</p>
+      <p>© 2026 Ihsan Travel and Tour • Certified Partner of Ethiopian Tourism Board</p>
     </div>
   </div>
 </body>
@@ -496,7 +496,7 @@ export class MailService {
 <body>
   <div class="container">
     <div class="header">
-      <h1>ASK AGENCY EXECUTIVE CONTROL</h1>
+      <h1>IHSAN TRAVEL AND TOUR EXECUTIVE CONTROL</h1>
       <p>Owner Operational & Financial Intelligence</p>
     </div>
     <div class="content">
@@ -568,7 +568,7 @@ export class MailService {
   <div class="container">
     <div class="header">
       <h1>EXPEDITION RESERVATION CONFIRMED</h1>
-      <p>ASK Ethiopian Tour & Travel Operations</p>
+      <p>Ihsan Travel and Tour Operations</p>
     </div>
     <div class="content">
       <h2 style="font-size: 17px; margin-top: 0;">Dear ${clientName},</h2>
@@ -614,7 +614,7 @@ export class MailService {
       </p>
     </div>
     <div class="footer">
-      <p>© 2026 ASK Digital Technologies & Tour Operator. Kebele 04, Bahir Dar, Ethiopia.</p>
+      <p>© 2026 Ihsan Travel and Tour. Kebele 04, Bahir Dar, Ethiopia.</p>
     </div>
   </div>
 </body>
@@ -665,7 +665,7 @@ export class MailService {
   <div class="container">
     <div class="header">
       <h1>CANCELLATION & SETTLEMENT ADVICE</h1>
-      <p>ASK Tour & Travel Agency Financial Ledger</p>
+      <p>Ihsan Travel and Tour Financial Ledger</p>
     </div>
     <div class="content">
       <h2 style="font-size: 17px; margin-top: 0;">Dear ${clientName},</h2>
@@ -711,7 +711,7 @@ export class MailService {
       </p>
     </div>
     <div class="footer">
-      <p>© 2026 ASK Digital Technologies & Tour Operator. Kebele 04, Bahir Dar, Ethiopia.</p>
+      <p>© 2026 Ihsan Travel and Tour. Kebele 04, Bahir Dar, Ethiopia.</p>
     </div>
   </div>
 </body>
@@ -768,7 +768,7 @@ export class MailService {
   <div class="container">
     <div class="header">
       <h1>AGENCY MANAGER NOTIFICATION</h1>
-      <p>ASK Operations Management Hub — Bahir Dar</p>
+      <p>Ihsan Travel and Tour Operations Management Hub — Bahir Dar</p>
     </div>
     <div class="content">
       <div class="event-badge">${eventType}</div>
@@ -841,7 +841,7 @@ export class MailService {
   <div class="container">
     <div class="header">
       <h1>AUTOMATED COMMISSION DISPATCH</h1>
-      <p>ASK Sales & Referral Partner Network</p>
+      <p>Ihsan Travel and Tour Sales & Referral Partner Network</p>
     </div>
     <div class="content">
       <h2 style="font-size: 17px; margin-top: 0; color: #1c1917;">Dear Partner Agent ${agentName},</h2>
@@ -934,12 +934,12 @@ export class MailService {
   <div class="container">
     <div class="header">
       <h1>ETHIOPIAN EXPEDITION INVITATION</h1>
-      <p>ASK Tour & Travel Authorized Partner Network</p>
+      <p>Ihsan Travel and Tour Authorized Partner Network</p>
     </div>
     <div class="content">
       <h2 style="font-size: 18px; margin-top: 0; color: #1c1917;">Hello ${clientName || 'Valued Traveler'},</h2>
       <p style="font-size: 13px; line-height: 1.6; color: #44403c;">
-        <strong>${agentName}</strong>, an authorized travel agent partner with ASK Ethiopian Tour & Travel, has generated an exclusive, one-time referral code for you to explore Ethiopia's historic circuits and sacred wonders.
+        <strong>${agentName}</strong>, an authorized travel agent partner with Ihsan Travel and Tour, has generated an exclusive, one-time referral code for you to explore Ethiopia's historic circuits and sacred wonders.
       </p>
 
       ${

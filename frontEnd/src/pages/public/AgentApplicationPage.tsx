@@ -67,7 +67,7 @@ export const AgentApplicationPage: React.FC = () => {
             <span>Official Partner Program</span>
           </div>
           <h1 className="font-serif text-3xl sm:text-5xl font-bold text-stone-900 leading-tight">
-            Join the ASK Travel Agent Network
+            Join the Ihsan Travel and Tour Agent Network
           </h1>
           <p className="text-stone-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
             Partner with Ethiopia's premier licensed tour operator. Refer travelers to authentic expeditions across Lalibela, Simien, Danakil, and Lake Tana, and earn an automated 10% commission on every booking.
@@ -119,7 +119,7 @@ export const AgentApplicationPage: React.FC = () => {
                   Application Submitted for Review!
                 </h2>
                 <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
-                  Thank you, <strong>{name}</strong>! Your application to join the ASK Travel Partner Agent Network has been forwarded to our <strong>Agency Manager</strong> and <strong>System Owner</strong>.
+                  Thank you, <strong>{name}</strong>! Your application to join the Ihsan Travel and Tour Partner Agent Network has been forwarded to our <strong>Agency Manager</strong> and <strong>System Owner</strong>.
                 </p>
               </div>
 

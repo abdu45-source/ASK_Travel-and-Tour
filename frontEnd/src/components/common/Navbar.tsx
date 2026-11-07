@@ -49,7 +49,7 @@ export const Navbar: React.FC = () => {
           </div>
           <div>
             <span className="font-serif font-bold text-xl tracking-tight text-stone-900 group-hover:text-primary-800 transition-colors">
-              ASK <span className="text-primary-600 font-sans font-semibold text-lg">TOURS</span>
+              Ihsan <span className="text-primary-600 font-sans font-semibold text-lg">Travel and Tour</span>
             </span>
             <span className="block text-[10px] tracking-wider uppercase font-semibold text-stone-500">
               Ethiopia Premier Travel

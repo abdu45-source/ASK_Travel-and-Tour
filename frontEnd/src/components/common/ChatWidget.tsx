@@ -90,15 +90,15 @@ export const ChatWidget: React.FC = () => {
       }
     } else {
       // Guest public visitor chat
-      let guestId = sessionStorage.getItem('ask_guest_chat_id');
+      let guestId = sessionStorage.getItem('ihsan_guest_chat_id') || sessionStorage.getItem('ask_guest_chat_id');
       if (!guestId) {
         guestId = 'guest_' + Date.now().toString(36) + '_' + Math.random().toString(36).substring(2, 6);
-        sessionStorage.setItem('ask_guest_chat_id', guestId);
+        sessionStorage.setItem('ihsan_guest_chat_id', guestId);
       }
       setConversationId(guestId);
       setCounterpart({
         id: 'concierge_support',
-        name: 'ASK Live Concierge',
+        name: 'Ihsan Travel and Tour Live Concierge',
         email: 'owner@askdigital.et',
         role: 'CONCIERGE',
       });
@@ -110,9 +110,9 @@ export const ChatWidget: React.FC = () => {
             id: 'welcome_1',
             conversation_id: guestId,
             sender_id: 'concierge_support',
-            body: 'Hello! Welcome to ASK Ethiopian Tour & Travel. I am your real-time concierge connected via live WebSocket. How can we assist you with our tour packages or bookings today?',
+            body: 'Hello! Welcome to Ihsan Travel and Tour. I am your real-time concierge connected via live WebSocket. How can we assist you with our tour packages or bookings today?',
             created_at: new Date().toISOString(),
-            sender: { id: 'concierge_support', name: 'ASK Live Concierge' } as any,
+            sender: { id: 'concierge_support', name: 'Ihsan Travel and Tour Live Concierge' } as any,
           },
         ]);
       }
@@ -217,7 +217,7 @@ export const ChatWidget: React.FC = () => {
                       ? counterpart.name
                       : isAgent
                       ? 'Agency Manager Support'
-                      : 'ASK Concierge'}
+                      : 'Ihsan Travel and Tour Concierge'}
                   </span>
                   <span className="h-2 w-2 rounded-full bg-emerald-400 inline-block" title="Online (WebSocket Live)" />
                 </h4>
@@ -309,7 +309,7 @@ export const ChatWidget: React.FC = () => {
               type="text"
               value={inputMessage}
               onChange={handleTyping}
-              placeholder="Ask anything about tours, rates, or bookings..."
+              placeholder="Inquire about tours, rates, or bookings..."
               maxLength={2000}
               className="flex-1 rounded-2xl border border-stone-200 px-4 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-primary-500 bg-stone-50"
             />

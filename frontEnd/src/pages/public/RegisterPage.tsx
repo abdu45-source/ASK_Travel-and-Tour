@@ -174,7 +174,7 @@ export const RegisterPage: React.FC = () => {
           </h2>
           <p className="text-xs text-stone-500 max-w-sm mx-auto">
             {step === 1
-              ? 'Join ASK Tours to reserve Ethiopian expeditions, access seasonal itineraries, and manage bookings.'
+              ? 'Join Ihsan Travel and Tour to reserve Ethiopian expeditions, access seasonal itineraries, and manage bookings.'
               : 'Enter the 6-character activation code sent to your email to verify and access your account.'}
           </p>
         </div>
@@ -512,7 +512,7 @@ export const RegisterPage: React.FC = () => {
                   autoFocus
                   value={emailCode}
                   onChange={(e) => setEmailCode(e.target.value.toUpperCase())}
-                  placeholder="e.g. ASK-729401"
+                  placeholder="e.g. IHSAN-729401"
                   maxLength={16}
                   className="w-full pl-12 pr-4 py-3.5 rounded-2xl border-2 border-amber-300 bg-amber-50/20 text-center font-mono text-base font-extrabold tracking-widest text-stone-900 focus:ring-4 focus:ring-amber-500/20 focus:border-amber-600 focus:outline-none transition-all uppercase"
                 />

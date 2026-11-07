@@ -197,7 +197,7 @@ export const ManagerDashboard: React.FC = () => {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `ASK_Manager_Bookings_Report_${new Date().toISOString().split('T')[0]}.xlsx`;
+      a.download = `Ihsan_Travel_and_Tour_Manager_Bookings_Report_${new Date().toISOString().split('T')[0]}.xlsx`;
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -217,7 +217,7 @@ export const ManagerDashboard: React.FC = () => {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `ASK_Manager_Operational_Report_${new Date().toISOString().split('T')[0]}.pdf`;
+      a.download = `Ihsan_Travel_and_Tour_Manager_Operational_Report_${new Date().toISOString().split('T')[0]}.pdf`;
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -776,8 +776,8 @@ export const ManagerDashboard: React.FC = () => {
                               handleDownloadPdf(
                                 b.id,
                                 isCancelled
-                                  ? `ASK_Cancellation_${b.id.substring(0, 8)}.pdf`
-                                  : `ASK_Voucher_${b.id.substring(0, 8)}.pdf`,
+                                  ? `Ihsan_Cancellation_${b.id.substring(0, 8)}.pdf`
+                                  : `Ihsan_Voucher_${b.id.substring(0, 8)}.pdf`,
                               )
                             }
                             disabled={downloadingPdfId === b.id}

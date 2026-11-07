@@ -313,7 +313,7 @@ export const HomePage: React.FC = () => {
               </h2>
 
               <p className="text-stone-300 text-sm leading-relaxed">
-                Founded on the palm-fringed shores of Lake Tana in Bahir Dar, ASK Tours was created with a heartfelt mission: to unveil the soul of Ethiopia to the world through genuine cultural immersion, master local storytelling, and unwavering integrity.
+                Founded on the palm-fringed shores of Lake Tana in Bahir Dar, Ihsan Travel and Tour was created with a heartfelt mission: to unveil the soul of Ethiopia to the world through genuine cultural immersion, master local storytelling, and unwavering integrity.
               </p>
 
               <p className="text-stone-400 text-xs sm:text-sm leading-relaxed">
@@ -369,7 +369,7 @@ export const HomePage: React.FC = () => {
                     "We don't merely guide tours — we open the gates to our living ancestors, sacred traditions, and timeless warmth."
                   </p>
                   <p className="text-[11px] font-bold text-amber-400 mt-0.5">
-                    Abebe Bekele — Founder & Managing Director, ASK Tours Bahir Dar
+                    Abebe Bekele — Founder & Managing Director, Ihsan Travel and Tour Bahir Dar
                   </p>
                 </div>
               </div>
@@ -425,7 +425,7 @@ export const HomePage: React.FC = () => {
               Earn Automated 10% Commission on Every Client Booking
             </h2>
             <p className="text-xs sm:text-sm text-stone-300 leading-relaxed">
-              Register as an ASK Travel Agent to receive your exclusive 8-character referral code. When your clients book an Ethiopian expedition, our automated ledger instantly credits 10% to your wallet upon booking approval with flexible bank payouts.
+              Register as an Ihsan Travel and Tour Agent to receive your exclusive 8-character referral code. When your clients book an Ethiopian expedition, our automated ledger instantly credits 10% to your wallet upon booking approval with flexible bank payouts.
             </p>
             <div className="pt-4 flex flex-wrap gap-4">
               <Link

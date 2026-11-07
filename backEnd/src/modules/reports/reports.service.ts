@@ -153,7 +153,7 @@ export class ReportsService {
     const bookings = await this.getBookingsReport(filters);
 
     const workbook = new ExcelJS.Workbook();
-    workbook.creator = 'ASK Tour & Travel Agency Management System';
+    workbook.creator = 'Ihsan Travel and Tour Agency Management System';
     workbook.created = new Date();
 
     const sheet = workbook.addWorksheet('Bookings Operational Report');
@@ -279,7 +279,7 @@ export class ReportsService {
 
       // Header Banner with Issuance Mark (ORIGINAL vs COPY)
       doc.rect(36, 36, 523, 56).fill('#1C1917');
-      doc.fontSize(15).font('Helvetica-Bold').fillColor('#FFFFFF').text('ASK DIGITAL TECHNOLOGIES', 48, 46);
+      doc.fontSize(15).font('Helvetica-Bold').fillColor('#FFFFFF').text('IHSAN TRAVEL AND TOUR', 48, 46);
       doc.fontSize(8.5).font('Helvetica').fillColor('#F59E0B').text('Tour & Travel Agency — Commercial & Operational Ledger', 48, 64);
       doc.fontSize(7.5).font('Helvetica').fillColor('#D6D3D1').text(`Generated on: ${new Date().toUTCString()} | Prepared for: ${actorName}`, 48, 76);
 

@@ -705,8 +705,8 @@ export const OwnerDashboard: React.FC = () => {
                               handleDownloadPdf(
                                 row.id,
                                 isCancelled
-                                  ? `ASK_Cancellation_Statement_${row.bookingRef}.pdf`
-                                  : `ASK_Expedition_Voucher_${row.bookingRef}.pdf`,
+                                  ? `Ihsan_Cancellation_Statement_${row.bookingRef}.pdf`
+                                  : `Ihsan_Expedition_Voucher_${row.bookingRef}.pdf`,
                               )
                             }
                             disabled={downloadingPdfId === row.id}
@@ -1065,7 +1065,7 @@ export const OwnerDashboard: React.FC = () => {
                   required
                   value={newManagerEmail}
                   onChange={(e) => setNewManagerEmail(e.target.value)}
-                  placeholder="manager@askdigital.et"
+                  placeholder="manager@ihsantravel.et"
                   className="w-full rounded-xl border border-stone-200 p-2.5 text-xs focus:ring-2 focus:ring-primary-500 focus:outline-none"
                 />
               </div>

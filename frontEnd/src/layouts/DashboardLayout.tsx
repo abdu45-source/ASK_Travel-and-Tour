@@ -92,7 +92,7 @@ export const DashboardLayout: React.FC = () => {
               <Compass className="w-5 h-5" />
             </div>
             <div>
-              <span className="font-serif font-bold text-lg text-white">ASK TOURS</span>
+              <span className="font-serif font-bold text-lg text-white">Ihsan Travel and Tour</span>
               <span className="block text-[10px] tracking-wider uppercase text-amber-400 font-semibold">
                 {user.roles.join(' · ')}
               </span>

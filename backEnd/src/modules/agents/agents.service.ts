@@ -343,7 +343,7 @@ export class AgentsService {
 
         return {
           id: b.id,
-          bookingRef: `ASK-${b.id.substring(0, 8).toUpperCase()}`,
+          bookingRef: `IHSAN-${b.id.substring(0, 8).toUpperCase()}`,
           clientId: b.client_id,
           clientName: b.client?.user?.name || 'Valued Traveler',
           clientEmail: b.client?.user?.email || '',
@@ -577,7 +577,7 @@ export class AgentsService {
     return {
       success: true,
       message:
-        'Your application to join the ASK Travel Agent Network has been submitted! Our Agency Manager and Owner have been notified, and an official confirmation email has been dispatched to your inbox.',
+        'Your application to join the Ihsan Travel and Tour Agent Network has been submitted! Our Agency Manager and Owner have been notified, and an official confirmation email has been dispatched to your inbox.',
     };
   }
 

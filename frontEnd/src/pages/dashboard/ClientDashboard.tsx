@@ -165,7 +165,7 @@ export const ClientDashboard: React.FC = () => {
           <p><strong>Category:</strong> ${feedbackCategory}</p>
           <p><strong>Comments:</strong> ${feedbackComment}</p>
           <hr style="border:none;border-top:1px solid #e7e5e4;margin:16px 0;" />
-          <p style="font-size:12px;color:#78716c;">Submitted via ASK Client Dashboard with Brevo delivery service.</p>
+          <p style="font-size:12px;color:#78716c;">Submitted via Ihsan Travel and Tour Client Dashboard with Brevo delivery service.</p>
         </div>`,
       });
     } catch {
@@ -532,7 +532,7 @@ export const ClientDashboard: React.FC = () => {
                           </p>
                         </div>
                         <button
-                          onClick={() => handleDownloadPdf(b.id, `ASK_Travel_Cancellation_Statement_${b.id.substring(0, 8)}.pdf`)}
+                          onClick={() => handleDownloadPdf(b.id, `Ihsan_Travel_and_Tour_Cancellation_Statement_${b.id.substring(0, 8)}.pdf`)}
                           disabled={downloadingId === b.id}
                           className="inline-flex items-center gap-1.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white px-3.5 py-2 text-xs font-bold transition-all active:scale-[0.98] disabled:opacity-50 shrink-0 shadow-sm"
                         >
@@ -567,7 +567,7 @@ export const ClientDashboard: React.FC = () => {
                   <div className="flex flex-wrap items-center justify-end gap-2.5 pt-3 border-t border-stone-100">
                     {isApproved && (
                       <button
-                        onClick={() => handleDownloadPdf(b.id, `ASK_Travel_Voucher_${b.id.substring(0, 8)}.pdf`)}
+                        onClick={() => handleDownloadPdf(b.id, `Ihsan_Travel_and_Tour_Voucher_${b.id.substring(0, 8)}.pdf`)}
                         disabled={downloadingId === b.id}
                         className="inline-flex items-center gap-1.5 rounded-xl bg-primary-50 text-primary-700 hover:bg-primary-100 border border-primary-200 px-3.5 py-1.5 text-xs font-bold transition-all disabled:opacity-50 shadow-sm"
                         title="Download official Booking Confirmation & Travel Voucher"
@@ -608,7 +608,7 @@ export const ClientDashboard: React.FC = () => {
               Traveler Onboarding & Roadmap
             </span>
             <h3 className="font-serif text-2xl font-bold text-stone-900 mt-1">
-              How ASK Ethiopian Tour & Travel Works
+              How Ihsan Travel and Tour Works
             </h3>
             <p className="text-xs text-stone-500 mt-0.5">
               Follow these 4 simple steps to explore Ethiopia, reserve journeys, and travel with peace of mind.

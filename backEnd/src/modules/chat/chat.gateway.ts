@@ -161,7 +161,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   private triggerConciergeReply(conversationId: string, userText: string) {
     const lower = userText.toLowerCase();
     let reply =
-      'Hello and welcome to ASK Tour & Travel! Our certified agency guides in Bahir Dar and Addis Ababa are available 24/7 to design your authentic Ethiopian journey. How can we assist you today?';
+      'Hello and welcome to Ihsan Travel and Tour! Our certified agency guides in Bahir Dar and Addis Ababa are available 24/7 to design your authentic Ethiopian journey. How can we assist you today?';
 
     if (
       lower.includes('price') ||
@@ -235,7 +235,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
           created_at: new Date().toISOString(),
           sender: {
             id: 'concierge_support',
-            name: 'ASK Support Concierge',
+            name: 'Ihsan Support Concierge',
           },
         });
     }, 1400);

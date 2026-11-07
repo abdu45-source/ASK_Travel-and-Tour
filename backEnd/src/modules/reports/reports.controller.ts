@@ -47,7 +47,7 @@ export class ReportsController {
     const buffer = await this.reportsService.exportToExcel(query, actorId);
     res.set({
       'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-      'Content-Disposition': `attachment; filename="ASK_Travel_Report_${Date.now()}.xlsx"`,
+      'Content-Disposition': `attachment; filename="Ihsan_Travel_Report_${Date.now()}.xlsx"`,
       'Content-Length': buffer.length,
     });
     res.send(buffer);
@@ -67,7 +67,7 @@ export class ReportsController {
     );
     res.set({
       'Content-Type': 'application/pdf',
-      'Content-Disposition': `attachment; filename="ASK_Travel_Report_${Date.now()}.pdf"`,
+      'Content-Disposition': `attachment; filename="Ihsan_Travel_Report_${Date.now()}.pdf"`,
       'Content-Length': buffer.length,
     });
     res.send(buffer);

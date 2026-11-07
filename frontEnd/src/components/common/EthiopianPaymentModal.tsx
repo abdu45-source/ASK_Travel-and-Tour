@@ -36,7 +36,7 @@ export type PaymentMethodType = 'TELEBIRR' | 'CBE_BIRR' | 'CHAPA' | 'BANK_TRANSF
 export const EthiopianPaymentModal: React.FC<EthiopianPaymentModalProps> = ({
   isOpen,
   onClose,
-  bookingRef = 'ASK-' + Math.floor(100000 + Math.random() * 900000),
+  bookingRef = 'IHSAN-' + Math.floor(100000 + Math.random() * 900000),
   destinationTitle,
   travelDate,
   travelers,
@@ -185,7 +185,7 @@ export const EthiopianPaymentModal: React.FC<EthiopianPaymentModalProps> = ({
             <div className="rounded-2xl bg-white border border-stone-200 p-5 space-y-4 shadow-sm text-xs font-mono text-stone-800">
               <div className="text-center border-b border-dashed border-stone-200 pb-3 space-y-1">
                 <span className="font-serif font-bold text-sm tracking-wider uppercase block text-stone-900">
-                  ASK ETHIOPIA TOURS & TRAVEL PLC
+                  IHSAN TRAVEL AND TOUR PLC
                 </span>
                 <span className="text-[10px] text-stone-500 block">
                   TIN: 0061298412 | VAT Reg: 9481230491
@@ -542,7 +542,7 @@ export const EthiopianPaymentModal: React.FC<EthiopianPaymentModalProps> = ({
                   Commercial Bank of Ethiopia (CBE) Escrow
                 </span>
                 <p className="text-[11px]">
-                  Account Name: <span className="font-bold text-stone-900">ASK Ethiopian Tour Agency</span><br />
+                  Account Name: <span className="font-bold text-stone-900">Ihsan Travel and Tour Agency</span><br />
                   Account No: <span className="font-mono font-bold text-stone-900">1000123456789</span><br />
                   Branch: Bahir Dar Central Office
                 </p>

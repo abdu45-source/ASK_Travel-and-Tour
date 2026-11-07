@@ -57,9 +57,9 @@ async function bootstrap() {
 
   // Swagger OpenAPI Documentation & Interactive Testing Tool
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('ASK Tour & Travel Agency API')
+    .setTitle('Ihsan Travel and Tour Agency API')
     .setDescription(
-      'Comprehensive REST API documentation and interactive testing sandbox for ASK Tour & Travel Management System. Includes Client Reservations, Agent Pipelines, Moderation, RBAC, Wallets, and Transactional Notifications.',
+      'Comprehensive REST API documentation and interactive testing sandbox for Ihsan Travel and Tour Management System. Includes Client Reservations, Agent Pipelines, Moderation, RBAC, Wallets, and Transactional Notifications.',
     )
     .setVersion('1.0')
     .addBearerAuth(
@@ -83,7 +83,7 @@ async function bootstrap() {
 
   const swaggerDocument = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api/docs', app, swaggerDocument, {
-    customSiteTitle: 'ASK Tour & Travel - Swagger API Docs',
+    customSiteTitle: 'Ihsan Travel and Tour - Swagger API Docs',
     swaggerOptions: {
       persistAuthorization: true,
       docExpansion: 'none',
@@ -96,7 +96,7 @@ async function bootstrap() {
   // Crucial: Bind to 0.0.0.0 for Docker & cloud host (Render/Railway/AWS) port detection
   await app.listen(port, '0.0.0.0');
   console.log(`=======================================================`);
-  console.log(`ASK Tour & Travel Agency API listening on 0.0.0.0:${port}/api/v1`);
+  console.log(`Ihsan Travel and Tour Agency API listening on 0.0.0.0:${port}/api/v1`);
   console.log(`Swagger API Docs: http://0.0.0.0:${port}/api/docs`);
   console.log(`Health check: http://0.0.0.0:${port}/api/v1/health/live`);
   console.log(`=======================================================`);

@@ -42,7 +42,7 @@ export class MailController {
     }
 
     const htmlContent =
-      body.html || `<div style="font-family:sans-serif;padding:20px;color:#1c1917;"><p>${body.text || 'Message from ASK Tour & Travel'}</p></div>`;
+      body.html || `<div style="font-family:sans-serif;padding:20px;color:#1c1917;"><p>${body.text || 'Message from Ihsan Travel and Tour'}</p></div>`;
 
     const result = await this.mailService.sendMail({
       to: body.to.trim(),

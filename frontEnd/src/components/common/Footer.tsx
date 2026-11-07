@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
                 <Compass className="w-5 h-5" />
               </div>
               <span className="font-serif font-bold text-xl text-white tracking-tight">
-                ASK <span className="text-primary-500">TOURS</span>
+                Ihsan <span className="text-primary-500">Travel and Tour</span>
               </span>
             </div>
             <p className="text-xs text-stone-400 leading-relaxed">
@@ -90,7 +90,7 @@ export const Footer: React.FC = () => {
             </h4>
             <div className="flex items-start gap-2.5 text-xs text-stone-400">
               <MapPin className="w-4 h-4 text-primary-500 shrink-0 mt-0.5" />
-              <span>ASK Digital Technologies Bldg, Kebele 04, Bahir Dar, Amhara Region, Ethiopia</span>
+              <span>Ihsan Travel and Tour Bldg, Kebele 04, Bahir Dar, Amhara Region, Ethiopia</span>
             </div>
             <div className="flex items-center gap-2.5 text-xs text-stone-400">
               <Phone className="w-4 h-4 text-primary-500 shrink-0" />
@@ -108,7 +108,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Credits */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 gap-4">
           <div>
-            <p>© 2026 ASK Digital Technologies. All rights reserved. Tour & Travel Agency Management System v2.0.</p>
+            <p>© 2026 Ihsan Travel and Tour. All rights reserved. Tour & Travel Agency Management System v2.0.</p>
             <p className="text-[11px] text-stone-400 mt-1">
               Lead Architect & Full-Stack Engineer: <span className="text-stone-300 font-semibold">Abduselam Ibrahim</span> (<a href="mailto:abduselamibrahim85@gmail.com" className="text-primary-400 hover:underline">abduselamibrahim85@gmail.com</a> • <span className="text-amber-400 font-mono">0900572995</span>)
             </p>
