@@ -96,9 +96,10 @@ async function bootstrap() {
   // Crucial: Bind to 0.0.0.0 for Docker & cloud host (Render/Railway/AWS) port detection
   await app.listen(port, '0.0.0.0');
   console.log(`=======================================================`);
-  console.log(`Ihsan Travel and Tour Agency API listening on 0.0.0.0:${port}/api/v1`);
-  console.log(`Swagger API Docs: http://0.0.0.0:${port}/api/docs`);
-  console.log(`Health check: http://0.0.0.0:${port}/api/v1/health/live`);
+  console.log(`Ihsan Travel and Tour Agency API listening on port ${port}`);
+  console.log(`Local Access:     http://localhost:${port}/api/v1`);
+  console.log(`Swagger API Docs: http://localhost:${port}/api/docs`);
+  console.log(`Health check:     http://localhost:${port}/api/v1/health/live`);
   console.log(`=======================================================`);
 }
 bootstrap();
